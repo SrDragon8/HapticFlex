@@ -276,6 +276,8 @@ MonoBehaviour:
   forcePerSecond: 1
   reboundMult: 5
   maxForce: 10
+  FlexResistance: 10
+  hapticManager: {fileID: 1833420251}
   h: 1
   w: 10
   L: 100
@@ -297,10 +299,95 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.001, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &595682929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 11930718487450219, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_Name
+      value: Haptic Device
+      objectReference: {fileID: 0}
+    - target: {fileID: 11930718487450219, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250125160427390513, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754194399401948819, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: hip
+      value: 
+      objectReference: {fileID: 1163760111}
+    - target: {fileID: 6754194399401948819, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: ihip
+      value: 
+      objectReference: {fileID: 2145293752}
+    - target: {fileID: 6754194399401948819, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+      propertyPath: hapticManager
+      value: 
+      objectReference: {fileID: 1833420252}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
 --- !u!1001 &700101414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,6 +617,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1163760111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1996246013550194277, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+  m_PrefabInstance: {fileID: 595682929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1328260971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6754194399401948819, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+  m_PrefabInstance: {fileID: 595682929}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38e244fb8f43d74eb18257dfa839878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1833420251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1833420253}
+  - component: {fileID: 1833420252}
+  m_Layer: 0
+  m_Name: HapticManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1833420252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833420251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dbfead8c00b1a4e88046caa98d8df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hapticDeviceWorkspace: 100
+  hapticDevices:
+  - {fileID: 1328260971}
+  Bar: {fileID: 382192131}
+  limitForce: 4
+  resistanceMinForce: 1
+  resistanceMaxForce: 30
+  outDisplacement: 0
+--- !u!4 &1833420253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833420251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2091766660
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +823,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &2145293752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8995379721014753272, guid: cb8cc82e6dba832449c7961f539c1fbb, type: 3}
+  m_PrefabInstance: {fileID: 595682929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -677,3 +837,5 @@ SceneRoots:
   - {fileID: 1057066827}
   - {fileID: 700101414}
   - {fileID: 2091766665}
+  - {fileID: 1833420253}
+  - {fileID: 595682929}

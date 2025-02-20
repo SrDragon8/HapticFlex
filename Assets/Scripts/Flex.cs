@@ -6,6 +6,9 @@ public class Flex : MonoBehaviour
     public float forcePerSecond = 5.0f;
     public float reboundMult = 5.0f;
     public float maxForce = 10.0f;
+    public float FlexResistance = 10.0f;
+    public GameObject hapticManager;
+    private float hapticDisplacement;
 
     [Header("Bar dimensions (mm)")]
     public float h = 1.0f;
@@ -51,7 +54,11 @@ public class Flex : MonoBehaviour
 
         //Use object
         //currentForce = collisionForce;
+        hapticDisplacement = hapticManager.GetComponent<SampleSceneHM>().outDisplacement;
 
+        currentForce = hapticDisplacement * 10.0f;
+
+        //Debug.Log(hapticDisplacement);
 
 
         float ldeflection = deflection(currentForce, h, w, L, E);
@@ -60,13 +67,20 @@ public class Flex : MonoBehaviour
        
         mCollider.center = new Vector3(0, -ldeflection, 0) / 1000.0f;
 
+        ///*
         Debug.Log("Current force: " + Mathf.Round(currentForce*100.0f) / 100.0f + " N/mm" +
                   " | deflection: " + Mathf.Round(ldeflection * 100.0f) / 100.0f + " mm");
+        //*/
     }
 
     float deflection(float pF, float ph, float pw, float pL,float pE) //from flexural modulus equation
     {
         return (Mathf.Pow(pL, 3.0f) * pF) / (4.0f * pw * Mathf.Pow(ph, 3.0f) * pE);
+    }
+
+    float flexForce(float pD, float ph, float pw, float pL, float pE) //from flexural modulus equation
+    {
+        return (4.0f * pw * Mathf.Pow(ph, 3.0f) * pE * pD) / Mathf.Pow(pL, 3.0f);
     }
 
     private void OnCollisionStay(Collision collision)
