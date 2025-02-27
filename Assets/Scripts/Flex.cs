@@ -3,10 +3,7 @@ using UnityEngine;
 public class Flex : MonoBehaviour
 {
     [Header("Force (N/mm)")]
-    public float forcePerSecond = 5.0f;
-    public float reboundMult = 5.0f;
-    public float maxForce = 10.0f;
-    public float FlexResistance = 10.0f;
+    public float OutFlexResistance = 0.0f;
     public GameObject hapticManager;
     private float hapticDisplacement;
 
@@ -19,15 +16,12 @@ public class Flex : MonoBehaviour
     public float E = 72000.0f; 
 
     private SkinnedMeshRenderer mRenderer;
-    private BoxCollider mCollider;
     private float currentForce = 0.0f;
-    private float collisionForce = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mRenderer = GetComponent<SkinnedMeshRenderer>();
-        mCollider = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -38,38 +32,23 @@ public class Flex : MonoBehaviour
         mRenderer.SetBlendShapeWeight(1, w);
         mRenderer.SetBlendShapeWeight(2, L);
 
-        mCollider.size = new Vector3(L, h, w) / 1000.0f;
-
-
-        if (Input.GetKey(KeyCode.F))
-        {
-            currentForce += forcePerSecond * Time.deltaTime;
-        }
-        else
-        {
-            currentForce -= forcePerSecond * reboundMult * Time.deltaTime;
-        }
-
-        currentForce = Mathf.Clamp(currentForce, 0.0f, maxForce);
-
-        //Use object
-        //currentForce = collisionForce;
         hapticDisplacement = hapticManager.GetComponent<SampleSceneHM>().outDisplacement;
 
-        currentForce = hapticDisplacement * 10.0f;
+        currentForce = hapticDisplacement * 10.0f; //10mm
 
-        //Debug.Log(hapticDisplacement);
-
-
-        float ldeflection = deflection(currentForce, h, w, L, E);
+        //float ldeflection = deflection(currentForce, h, w, L, E);
+        float ldeflection = hapticDisplacement * 10.0f; //10mm deflection
 
         mRenderer.SetBlendShapeWeight(3, ldeflection);
-       
-        mCollider.center = new Vector3(0, -ldeflection, 0) / 1000.0f;
+        
+        OutFlexResistance = flexForce(ldeflection, h, w, L, E);
+
+        hapticManager.GetComponent<SampleSceneHM>().inBarResistanceForce = OutFlexResistance;
 
         ///*
         Debug.Log("Current force: " + Mathf.Round(currentForce*100.0f) / 100.0f + " N/mm" +
-                  " | deflection: " + Mathf.Round(ldeflection * 100.0f) / 100.0f + " mm");
+                  " | deflection: " + Mathf.Round(ldeflection * 100.0f) / 100.0f + " mm" +
+                  " | resistance force: " + Mathf.Round(OutFlexResistance * 100.0f) / 100.0f + " N");
         //*/
     }
 
@@ -83,8 +62,4 @@ public class Flex : MonoBehaviour
         return (4.0f * pw * Mathf.Pow(ph, 3.0f) * pE * pD) / Mathf.Pow(pL, 3.0f);
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        collisionForce = Mathf.Abs(collision.gameObject.GetComponent<Rigidbody>().mass * Physics.gravity.y);
-    }
 }
