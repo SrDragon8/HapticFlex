@@ -16,7 +16,6 @@ public class Flex : MonoBehaviour
     public float E = 72000.0f; 
 
     private SkinnedMeshRenderer mRenderer;
-    private float currentForce = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,9 +33,6 @@ public class Flex : MonoBehaviour
 
         hapticDisplacement = hapticManager.GetComponent<SampleSceneHM>().outDisplacement;
 
-        currentForce = hapticDisplacement * 10.0f; //10mm
-
-        //float ldeflection = deflection(currentForce, h, w, L, E);
         float ldeflection = hapticDisplacement * 10.0f; //10mm deflection
 
         mRenderer.SetBlendShapeWeight(3, ldeflection);
@@ -45,11 +41,10 @@ public class Flex : MonoBehaviour
 
         hapticManager.GetComponent<SampleSceneHM>().inBarResistanceForce = OutFlexResistance;
 
-        ///*
-        Debug.Log("Current force: " + Mathf.Round(currentForce*100.0f) / 100.0f + " N/mm" +
-                  " | deflection: " + Mathf.Round(ldeflection * 100.0f) / 100.0f + " mm" +
+        /* 
+        Debug.Log(" | deflection: " + Mathf.Round(ldeflection * 100.0f) / 100.0f + " mm" +
                   " | resistance force: " + Mathf.Round(OutFlexResistance * 100.0f) / 100.0f + " N");
-        //*/
+        */
     }
 
     float deflection(float pF, float ph, float pw, float pL,float pE) //from flexural modulus equation
