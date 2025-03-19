@@ -3,22 +3,20 @@ using UnityEngine.UI;
 
 public class MaterialChanger : MonoBehaviour
 {
-    public Material[] materials; // Lista de materiales en el inspector
-    public Renderer objectRenderer; // Asigna el Renderer del objeto
-    private int currentIndex = 0;
+    public Material material; // Lista de materiales en el inspector
+    public float flexModulus;
+    public GameObject barObject;
+
+    private Renderer objectRenderer; // Asigna el Renderer del objeto
 
     void Start()
     {
-        if (objectRenderer == null)
-            objectRenderer = GetComponent<Renderer>();
-
-        if (materials.Length > 0)
-            objectRenderer.material = materials[currentIndex]; // Asignar el material inicial
+        objectRenderer = barObject.GetComponent<Renderer>();
     }
 
     public void ChangeMaterial()
     {
-        currentIndex = (currentIndex + 1) % materials.Length; // Cambia al siguiente material
-        objectRenderer.material = materials[currentIndex]; // Aplica el nuevo material
+        objectRenderer.material = material; // Aplica el nuevo material
+        barObject.GetComponent<Flex>().E = flexModulus;
     }
 }
